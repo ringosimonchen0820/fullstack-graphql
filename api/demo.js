@@ -1,6 +1,8 @@
 const { ApolloServer } = require('apollo-server');
 const gql = require('graphql-tag');
 
+// 1. Create Query Type in the Schema using SDL
+    // Add fields to the Query Type
 const typeDefs = gql `
     type User {
         email: String! # the ! means not nullable 
@@ -9,11 +11,13 @@ const typeDefs = gql `
     }
 
     # query type is always necessary
+        # A type on a Schema that defines operations clients can perform to access data that resembles the shape of the other Types in the Schema.
     type Query {
         me: User!
     }
 `
 
+// 2. Create Resolvers for the fields
 const resolvers = {
     Query: {
         me() {
